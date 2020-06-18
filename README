@@ -1,0 +1,53 @@
+PETRE ALEXANDRA ELENA 335CB 
+
+----Tema 1 ASC----- 
+
+Clasa consumer.py:
+	- am inițializat variabilele în constructor
+	- am adăugat o metoda de wait - pe care o apelez când metoda add_to_cart()
+	întoarce false.
+	- am adăugat o metoda print_output - pe care o apelez după ce un consumator
+	apelează metoda place_order()
+
+	- în metoda run() - am parcurs fiecare coș de operații, am verificat ce tip
+	de operație este: 
+						* add - cât timp nu am adaugat întreaga cantitate,
+						apelez metoda add_to_cart(), și dacă metoda întoarce False
+						apelez metoda de wait.
+
+						* remove - cât timp nu am scos din coșul de cumpărături
+						întreaga cantitate, apelez metoda remove_from_cart()
+
+Clasa producer.py:
+	- am inițializat variabilele în constructor
+	- am adăugat metoda de wait pentru timpul de publish pe care îl aștept dacă
+	metoda publish() întoarce False.
+
+	- în metoda run() : - se ruleză la nesfârșit, pentru că nu se știe exact
+	de  câte produse este nevoie.
+						- se parcurge lista de produse și se apelează pentru 
+	fiecare produs publish().
+
+
+Clasa marketplace.py:
+	- am initializat valorile primite în constructor
+	- am adăugat două liste de liste: 
+		1.  pentru toți consumatorii - list_of_carts - fiecare consumator are
+			coșul său
+		2.  pentru toți producătorii - list_of_producers - fiecare producer are
+			propria listă cu produse pe care le face.
+	- fiecare producător // consumator are un id propriu
+	- metoda register_producer - întoarce id-ul producătorului, și m-am folosit
+	de variabila self.id_producer - ca să încrementez atunci când se adaugă un
+	nou producător, la fel m-am folosit de self.id_cart pentru metoda new_cart()
+	-publish: - întoarce False dacă lista producătorului apelant este plină,
+			  - dacă nu este plină se adaugă cantitatea în lista producatorului
+	- add_to_cart - se verifică dacă exista produsul pe care vreau să-l adaug
+	în lista vreunui producător, dacă există se adaugă în coșul consumer respectiv
+	- remove_from_cart - se scoate din lista cu id_cart dat ca parametru, 
+	produsul respectiv.
+	- după ce s-au procesat toate elementele din coșul unui consumator se apelează
+	place_order().
+
+
+	Local trec toate testele - în aproximatim 1.36-1.38 min.
